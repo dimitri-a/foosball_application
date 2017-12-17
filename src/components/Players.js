@@ -29,7 +29,7 @@ class Players extends Component {
             display = this.props.players.map
             (
                 (player,index) => (
-                    <p key={index}> {player.name}</p>
+                    <p key={index}> {player.name} wins: {player.nrWins}</p>
                 )
             )
         }

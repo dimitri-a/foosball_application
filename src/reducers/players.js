@@ -24,5 +24,5 @@ export default players;
 const checkWinner = (name) => (player) => {
     //todo remove
     debugger;
-    return name === player.name ? {...player, nrWins : player.nrWins+1} : player;
+    return name === player.name ? {...player, nrWins : player.nrWins+1,nrGames:player.nrGames+1} : player;
 }
