@@ -37,6 +37,8 @@ class Players extends Component {
         return (<div>
                 <label htmlFor="">Name</label>
                 <input ref={node => this.input = node} type="text"/>
+
+
                 <button className="btn btn-normal" onClick={this.addPlayer}>Add player</button>
 
                 {display}
