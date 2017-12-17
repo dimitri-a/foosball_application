@@ -8,7 +8,9 @@ class Players extends Component {
 
     addPlayer = () => {
         const value = this.input.value;
-        this.props.actions.addPlayer(value);
+        if (value!=='') {
+            this.props.actions.addPlayer(value);
+        }
     }
 
     render() {
