@@ -10,8 +10,12 @@ const players = (state = [{name: 'John', nrGames: 0, nrWins: 0}, {name: 'Ed', nr
 
         case 'ADD_WIN':
             console.log('player.name=', action.name);
-
             return state.map(checkWinner(action.name));
+
+
+        case 'ADD_LOSS':
+            console.log('player.name=', action.name);
+            return state.map(updateGameNr(action.name));
 
         default:
             return state;
@@ -22,7 +26,12 @@ export default players;
 
 
 const checkWinner = (name) => (player) => {
-    //todo remove
-    debugger;
+
     return name === player.name ? {...player, nrWins : player.nrWins+1,nrGames:player.nrGames+1} : player;
 }
+
+const updateGameNr = (name) => (player) => {
+
+    return name === player.name ? {...player, nrGames:player.nrGames+1} : player;
+}
+

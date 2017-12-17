@@ -18,6 +18,7 @@ class Matches extends Component {
         console.log('event.target.value=', event.target.value);
         this.props.actions.addMatch(this.state.selectedPlayer1, this.state.selectedPlayer2, event.target.value)
         this.props.actions.addWin(event.target.value);
+        this.props.actions.addLoss(event.target.value === this.state.selectedPlayer1 ? this.state.selectedPlayer2 :this.state.selectedPlayer1);
     }
 
     selectPlayer = (event) => {

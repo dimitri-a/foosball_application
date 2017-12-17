@@ -29,7 +29,8 @@ class Players extends Component {
             display = this.props.players.map
             (
                 (player,index) => (
-                    <p key={index}> {player.name} wins: {player.nrWins}</p>
+                    <p key={index}> {player.name} wins: {player.nrWins} <br/>
+                        winloss-rate: {player.nrWins/player.nrGames *100}%</p>
                 )
             )
         }
