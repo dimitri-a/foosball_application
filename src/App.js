@@ -12,6 +12,8 @@ import {
     Link
 } from 'react-router-dom';
 
+import { NavItem } from 'react-bootstrap';
+
 const store = createStore(reducer,applyMiddleware(logger))
 
 
@@ -20,12 +22,14 @@ const store = createStore(reducer,applyMiddleware(logger))
 const App = () => (
     <Provider store={store}>
         <HashRouter>
-            <div>
-                <ul>
-                    <li><Link to="/matches">matches</Link></li>
-                    <li><Link to="/">players</Link></li>
-                </ul>
-                <hr/>
+            <div className="container">
+                <div className="h1 well">Foosball stats</div>
+
+
+                <nav class="navbar navbar-default" role="navigation">
+                    <NavItem><Link to="/matches">Matches</Link></NavItem>
+                    <NavItem><Link to="/">Players</Link></NavItem>
+                </nav>
 
                 <Route exact path="/" component={Players}/>
                 <Route path="/matches" component={Matches}/>

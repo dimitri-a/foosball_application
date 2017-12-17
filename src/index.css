@@ -1,5 +1,21 @@
-body {
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
+
+.col-lg-1
+{
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.bottom
+{
+    margin-bottom: 20px;
+}
+
+.top
+{
+    margin-top: 20px;
+}
+
+.bold
+{
+    font-weight: bold;
 }
