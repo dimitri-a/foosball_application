@@ -6,7 +6,7 @@ const players = (state = [{name: 'John', nrGames: 0, nrWins: 0}, {name: 'Ed', nr
     switch (action.type) {
 
         case 'ADD_PLAYER':
-            return [...state, {name: action.name}]
+            return [...state, {name: action.name,nrWins:0,nrGames:0}]
 
         case 'ADD_WIN':
             console.log('player.name=', action.name);

@@ -35,7 +35,6 @@ class Players extends Component {
         console.log('inside players this.props.players=', this.props.players);
 
         return (<div>
-                <Header></Header>
                 <label htmlFor="">Name</label>
                 <input ref={node => this.input = node} type="text"/>
                 <button className="btn btn-normal" onClick={this.addPlayer}>Add player</button>

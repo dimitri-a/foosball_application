@@ -11,7 +11,7 @@ class Matches extends Component {
     constructor(props) {
         super();
         this.props = props;
-        this.state = {selectedPlayer1: this.props.players[0].name, selectedPlayer2: this.props.players[1].name}
+        this.state = {selectedPlayer1: this.props.players[0].name, selectedPlayer2: this.props.players[1].name,result:[]}
     }
 
 
@@ -46,8 +46,6 @@ console.log('result=',result);
 
         result.forEach(
             match => {
-                //todo remove
-                debugger;
                 if (match.winner === this.state.selectedPlayer1) {
                     nrWinsPlayer1 = nrWinsPlayer1 + 1;
                 }
@@ -62,16 +60,15 @@ console.log('result=',result);
 
         console.log('nrWinsPlayer2=',nrWinsPlayer2);
 
-        display = <span>{this.state.selectedPlayer1} {nrWinsPlayer1} wins vs {this.state.selectedPlayer2} {nrWinsPlayer2} wins  </span>
+        display = <span>Game stats:{this.state.selectedPlayer1} {nrWinsPlayer1} wins vs {this.state.selectedPlayer2} {nrWinsPlayer2} wins </span>
+
+        this.state.result = result;
 
         return display;
     }
 
 
-    render() {
-        let display='';
-        console.log('inside matches;this.props.players=', this.props.players);
-
+    setOptions = () =>{
         let options = <option></option>;
 
         if (this.props.players.length > 0) {
@@ -82,8 +79,19 @@ console.log('result=',result);
             )
 
         }
-
         console.log('options=', options);
+
+        return options;
+    }
+
+    render() {
+        let display='';
+        console.log('inside matches;this.props.players=', this.props.players);
+
+
+        this.setOptions(this.state.selectedPlayer1);
+        this.setOptions(this.state.selectedPlayer1);
+
         console.log('this.prips.matches=', this.props.matches);
 
 
@@ -96,32 +104,39 @@ console.log('result=',result);
 
         console.log('this.props.rate=', this.props.rate);
 
+        //todo remove
+        debugger;
+
         display = this.versus();
 
         return (<div>
 
-                <Header/>
 
                 <select id="p1" onChange={this.selectPlayer} value={this.state.selectedPlayer1}>
-                    {options}
+                    {this.setOptions()}
                 </select>
 
-                <button onClick={this.winner} value={this.state.selectedPlayer1}>{this.state.selectedPlayer1} wins
+                <button disabled={this.state.selectedPlayer1 ===this.state.selectedPlayer2} onClick={this.winner} value={this.state.selectedPlayer1}>{this.state.selectedPlayer1} wins
                 </button>
 
 
                 <select id="p2" onChange={this.selectPlayer} value={this.state.selectedPlayer2}>
-                    {options}
+                    {this.setOptions()}
                 </select>
 
-                <button onClick={this.winner} value={this.state.selectedPlayer2}>{this.state.selectedPlayer2} wins
+                <button disabled={this.state.selectedPlayer1 ===this.state.selectedPlayer2} onClick={this.winner} value={this.state.selectedPlayer2}>{this.state.selectedPlayer2} wins
                 </button>
 
                 <br/>
 
                 {display}
 
-                {matches}
+                {this.state.result.map( match => {
+
+                        return (<div>winner:{match.winner} || date:{match.dt}</div> )
+                    }
+
+                )}
 
 
 
