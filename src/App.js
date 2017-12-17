@@ -12,8 +12,6 @@ import {
     Link
 } from 'react-router-dom';
 
-import { NavItem } from 'react-bootstrap';
-
 const store = createStore(reducer,applyMiddleware(logger))
 
 const App = () => (
@@ -23,8 +21,8 @@ const App = () => (
                 <div className="h1 well">Foosball stats</div>
 
                 <nav className="navbar navbar-default" role="navigation">
-                    <NavItem><Link to="/matches">Matches</Link></NavItem>
-                    <NavItem><Link to="/">Players</Link></NavItem>
+                    <Link to="/matches">Matches</Link>{' '}
+                    <Link to="/">Players</Link>
                 </nav>
 
                 <Route exact path="/" component={Players}/>

@@ -59,6 +59,7 @@ class Matches extends Component {
                 {' '+'vs '}{this.state.selectedPlayer2} {nrWinsPlayer2} </div>
 
         this.state.result = result;
+
         return display;
     }
 
