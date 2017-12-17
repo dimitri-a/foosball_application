@@ -13,7 +13,3 @@ const matches = (state = [], action) => {
 };
 
 export default matches;
-
-//
-// export const getRate = (state,p1,p2) =>
-//     state.matches.filter(match => match.player1===p1 && match.player2===p2)

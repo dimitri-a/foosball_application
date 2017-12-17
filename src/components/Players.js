@@ -2,23 +2,16 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from "redux";
 import * as actions from '../actions/index';
-
 import {Button} from 'react-bootstrap';
-
-let textInput = null;
 
 class Players extends Component {
 
     addPlayer = () => {
         const value = this.input.value;
-
-        console.log(value);
         this.props.actions.addPlayer(value);
-
     }
 
     render() {
-
         let display = <div></div>;
 
         return (<div>
@@ -31,11 +24,9 @@ class Players extends Component {
                     <tr>
                         <th>Winner</th>
                         <th>Nr. wins</th>
-
                         <th>Rate</th>
                     </tr>
                     </thead>
-
                     {
                         this.props.players.map
                         (
@@ -47,7 +38,6 @@ class Players extends Component {
                                 </tr>
                             )
                         )
-
                     }
                 </table>
             </div>

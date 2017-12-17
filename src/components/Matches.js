@@ -1,11 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import FilterLink from "./FilterLink";
-import Header from "./Header";
 import {bindActionCreators} from "redux";
 import * as actions from "../actions/index";
-import {getRate} from "../reducers/matches";
-
 import {Button} from 'react-bootstrap';
 
 class Matches extends Component {
@@ -20,16 +16,13 @@ class Matches extends Component {
         }
     }
 
-
     winner = (event) => {
         this.props.actions.addMatch(this.state.selectedPlayer1, this.state.selectedPlayer2, event.target.value)
         this.props.actions.addWin(event.target.value);
-
         this.props.actions.addLoss(event.target.value === this.state.selectedPlayer1 ? this.state.selectedPlayer2 : this.state.selectedPlayer1);
     }
 
     selectPlayer = (event) => {
-
         event.target.id === 'p1' ?
             this.setState({selectedPlayer1: event.target.value})
             :
@@ -41,13 +34,13 @@ class Matches extends Component {
         let nrWinsPlayer1 = 0;
         let nrWinsPlayer2 = 0;
 
-//select matches 2 players
+        //select matches 2 players
         let result = this.props.matches.filter(match => {
-            return match.player1 === this.state.selectedPlayer1 && match.player2 === this.state.selectedPlayer2;
+                return match.player1 === this.state.selectedPlayer1 && match.player2 === this.state.selectedPlayer2
+            || match.player1 === this.state.selectedPlayer2 && match.player2 === this.state.selectedPlayer1
+
+                ;
         })
-
-
-        console.log('result=', result);
 
         result.forEach(
             match => {
@@ -60,18 +53,12 @@ class Matches extends Component {
             }
         );
 
-
-        console.log('nrWinsPlayer1=', nrWinsPlayer1);
-
-        console.log('nrWinsPlayer2=', nrWinsPlayer2);
-
         display =
             <div className="bottom bold">Historical results:
                 {this.state.selectedPlayer1} {nrWinsPlayer1}
                 {' '+'vs '}{this.state.selectedPlayer2} {nrWinsPlayer2} </div>
 
         this.state.result = result;
-
         return display;
     }
 
@@ -85,34 +72,20 @@ class Matches extends Component {
                 player =>
                     <option value={player.name}> {player.name}</option>
             )
-
         }
-        console.log('options=', options);
-
         return options;
     }
 
     render() {
         let display = '';
-        console.log('inside matches;this.props.players=', this.props.players);
-
 
         this.setOptions(this.state.selectedPlayer1);
         this.setOptions(this.state.selectedPlayer1);
-
-        console.log('this.prips.matches=', this.props.matches);
-
-
-        console.log('this.props.rate=', this.props.rate);
-
 
         display = this.versus();
-
         return (
             <div>
-
                 {display}
-
                 <div className="">
 
                     <select className="col-lg-2" id="p1" onChange={this.selectPlayer}
@@ -122,9 +95,8 @@ class Matches extends Component {
 
                     <Button className="btn-success col-lg-1 bottom"
                             disabled={this.state.selectedPlayer1 === this.state.selectedPlayer2} onClick={this.winner}
-                            value={this.state.selectedPlayer1}>{this.state.selectedPlayer1} wins
+                            value={this.state.selectedPlayer1}>Win
                     </Button>
-
 
                     <select className="col-lg-2" id="p2" onChange={this.selectPlayer}
                             value={this.state.selectedPlayer2}>
@@ -133,21 +105,19 @@ class Matches extends Component {
 
                     <Button className="btn-success col-lg-1"
                             disabled={this.state.selectedPlayer1 === this.state.selectedPlayer2} onClick={this.winner}
-                            value={this.state.selectedPlayer2}>{this.state.selectedPlayer2} wins
+                            value={this.state.selectedPlayer2}>Win
                     </Button>
 
                 </div>
 
                 <div className="">
                     <table className="table table-bordered top">
-
                         <thead>
                         <tr>
                             <th>Winner</th>
                             <th>Date</th>
                         </tr>
                         </thead>
-
                         {this.state.result.map(match => {
                                 return (<tr>
                                     <td>{match.winner} </td>
@@ -166,13 +136,11 @@ const mapStateToProps = function (state) {
     return {
         players: state.players,
         matches: state.matches
-
     }
 }
 
 const mapDispatchToProps = dispatch => ({
     actions: bindActionCreators(actions, dispatch)
-
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Matches)
