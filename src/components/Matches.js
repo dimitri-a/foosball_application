@@ -22,7 +22,6 @@ class Matches extends Component {
 
 
     winner = (event) => {
-        console.log('event.target.value=', event.target.value);
         this.props.actions.addMatch(this.state.selectedPlayer1, this.state.selectedPlayer2, event.target.value)
         this.props.actions.addWin(event.target.value);
 

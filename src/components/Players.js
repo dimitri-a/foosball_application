@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from "redux";
 import * as actions from '../actions/index';
 
-import { Button } from 'react-bootstrap';
+import {Button} from 'react-bootstrap';
 
 let textInput = null;
 
@@ -21,30 +21,35 @@ class Players extends Component {
 
         let display = <div></div>;
 
+        return (<div>
+                <input className="col-lg-2" ref={node => this.input = node} type="text"/>
 
-        if (this.props.players.length > 0) {
+                <Button className="btn-success btn col-lg-1" onClick={this.addPlayer}>Add player</Button>
 
-            display = this.props.players.map
-            (
-                (player, index) => (
-                    <p key={index}> {player.name} wins: {player.nrWins} <br/>
-                        winloss-rate: {player.nrGames !== 0 ? Math.round(player.nrWins / player.nrGames * 100) : 0}%</p>
-                )
-            )
-        }
+                <table className="table table-bordered top">
+                    <thead>
+                    <tr>
+                        <th>Winner</th>
+                        <th>Nr. wins</th>
 
-        console.log('inside players this.props.players=', this.props.players);
+                        <th>Rate</th>
+                    </tr>
+                    </thead>
 
-        return (<div className="row">
-                <label htmlFor="">Name</label>
-                <input ref={node => this.input = node} type="text"/>
+                    {
+                        this.props.players.map
+                        (
+                            (player, index) => (
+                                <tr key={index}>
+                                    <td>{player.name}</td>
+                                    <td>{player.nrWins}</td>
+                                    <td> {player.nrGames !== 0 ? Math.round(player.nrWins / player.nrGames * 100) : 0}%</td>
+                                </tr>
+                            )
+                        )
 
-
-                <Button className="btn-success btn" onClick={this.addPlayer}>Add player</Button>
-
-                {display}
-
-
+                    }
+                </table>
             </div>
         );
     }
