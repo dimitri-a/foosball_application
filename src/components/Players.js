@@ -20,17 +20,14 @@ class Players extends Component {
 
         let display = <div></div>;
 
-        //todo remove
-        debugger;
 
         if (this.props.players.length >0) {
-            //todo remove
-            debugger;
+
             display = this.props.players.map
             (
                 (player,index) => (
                     <p key={index}> {player.name} wins: {player.nrWins} <br/>
-                        winloss-rate: {player.nrWins/player.nrGames *100}%</p>
+                        winloss-rate: { player.nrGames !== 0 ? Math.round(player.nrWins/player.nrGames *100): 0}%</p>
                 )
             )
         }

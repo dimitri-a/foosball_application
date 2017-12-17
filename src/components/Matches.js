@@ -10,7 +10,7 @@ class Matches extends Component {
     constructor(props) {
         super();
         this.props = props;
-        this.state ={selectedPlayer1:'',selectedPlayer2:''}
+        this.state ={selectedPlayer1:this.props.players[0].name,selectedPlayer2:this.props.players[1].name}
     }
 
 
@@ -18,6 +18,10 @@ class Matches extends Component {
         console.log('event.target.value=', event.target.value);
         this.props.actions.addMatch(this.state.selectedPlayer1, this.state.selectedPlayer2, event.target.value)
         this.props.actions.addWin(event.target.value);
+
+        //todo remove
+        debugger;
+
         this.props.actions.addLoss(event.target.value === this.state.selectedPlayer1 ? this.state.selectedPlayer2 :this.state.selectedPlayer1);
     }
 
@@ -34,7 +38,6 @@ class Matches extends Component {
 
         let options = <option></option>;
 
-        debugger;
         if (this.props.players.length > 0) {
             options = this.props.players.map
             (
@@ -59,14 +62,14 @@ class Matches extends Component {
 
                 <Header/>
 
-                <select id="p1" onChange={this.selectPlayer}>
+                <select id="p1" onChange={this.selectPlayer} value ={this.state.selectedPlayer1}>
                     {options}
                 </select>
 
                 <button onClick={this.winner} value={this.state.selectedPlayer1}>{this.state.selectedPlayer1} wins</button>
 
 
-                <select id="p2" onChange={this.selectPlayer}>
+                <select id="p2" onChange={this.selectPlayer} value={this.state.selectedPlayer2}>
                     {options}
                 </select>
 
