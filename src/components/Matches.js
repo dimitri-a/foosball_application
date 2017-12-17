@@ -87,7 +87,6 @@ class Matches extends Component {
             <div>
                 {display}
                 <div className="">
-
                     <select className="col-lg-2" id="p1" onChange={this.selectPlayer}
                             value={this.state.selectedPlayer1}>
                         {this.setOptions()}
@@ -107,7 +106,6 @@ class Matches extends Component {
                             disabled={this.state.selectedPlayer1 === this.state.selectedPlayer2} onClick={this.winner}
                             value={this.state.selectedPlayer2}>Win
                     </Button>
-
                 </div>
 
                 <div className="">
